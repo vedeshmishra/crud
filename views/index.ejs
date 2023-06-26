@@ -1,0 +1,81 @@
+ <%- include('./layouts/header.ejs') %>
+
+ <div class="container">
+     <div class="row mt-5 ">
+         <div class="col-sm-5  bg-primary bg-opacity-50 p-5">
+             <div class="display-4 text-warning bg-info text-center">Create Student Record</div>
+             <form method="post">
+                 <div class="mb-3">
+                     <label for="Name" class="form-label">Name</label>
+                     <input type="text" name="name" class="form-control" id="name" placeholder="Enter Name" required>
+                 </div>
+                 <div class="mb-3">
+                     <label for="age" class="form-label">Age</label>
+                     <input type="text" name="age" class="form-control" id="age" placeholder="Enter Age" required>
+                 </div>
+                 <div class="mb-3">
+                     <label for="phone" class="form-label">Phone</label>
+                     <input type="text" name="phone" class="form-control" id="phone" placeholder="Enter phone" required>
+                 </div>
+                 <div class="mb-3">
+                     <label for="email" class="form-label">Email</label>
+                     <input type="text" class="form-control" name="email" id="email" placeholder="Enter Email" required>
+                 </div>
+                 <div class="mb-3">
+                     <button type="submit" class="btn  btn-lg border-light bg-secondary text-light"> Create
+                         Record</button>
+                 </div>
+             </form>
+         </div>
+         <div class="col-sm-7">
+             <div class="display-4 text-warning bg-success text-center">List students</div>
+             <div class="table table-responsive">
+                 <table class="table table-striped">
+                     <th>
+                         <tr>
+                             <td>Sn.</td>
+                             <td>Sn.</td>
+                             <td>Name</td>
+                             <td>Age</td>
+                             <td>Phone</td>
+                             <td>Email</td>
+                         </tr>
+                     </th>
+                     <tbody>
+                         <% for (var i = 0; i < data.length; i++) { %>
+                         <tr>
+                             <td><%-i%></td>
+                             <td><img width="90" class="img-thumbnail" src="/images/<%-data[i].image %>"
+                                     alt="<%-data[i].image.length > 1 ?   data[i].image : 'no-image'   %>">
+                             </td>
+                             <td><%-data[i].name %></td>
+                             <td><%-data[i].age %></td>
+                             <td><%-data[i].phone %></td>
+                             <td><%-data[i].email %></td>
+                             <td>
+                                 <table align="center">
+                                     <tr>
+                                         <td>
+                                             <a href="/edit/<%-data[i]._id %>" class="p-2">
+                                                 <span class="fa fa-pen"></span>
+                                             </a>
+                                         </td>
+                                         <td>
+                                             <a href="/delete/<%-data[i]._id %>">
+                                                 <span class="fa fa-trash"></span>
+                                             </a>
+                                         </td>
+                                     </tr>
+                                 </table>
+
+
+                             </td>
+                         </tr>
+                         <% } %>
+                     </tbody>
+                 </table>
+             </div>
+         </div>
+     </div>
+ </div>
+ <%- include('./layouts/footer.ejs') %>
